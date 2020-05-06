@@ -1,0 +1,19 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Ensure nginx installed
+      package:
+        name: nginx
+        state: present
+
+    - name: Ensure nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Put content on webserver
+      copy:
+        content: "<h1>Welcome to Summit@Sites</h1>"
+        dest: /usr/share/nginx/html/index.html

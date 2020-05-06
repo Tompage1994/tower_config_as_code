@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  tasks:
+    - include_role:
+        name: ansible-tower-manage
+        tasks_from: "{{tower_tasks}}.yml"
+      loop: "{{ tower_object types }}"
+      loop_control:
+        loop_var: tower_tasks
+      vars:
+        tower_manage_server: https://10.0.1.6
+        tower_manage_validate_certs: false
+        tower_manage_username: admin
+        tower_manage_password: password
