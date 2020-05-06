@@ -1,0 +1,5 @@
+---
+- name: ansible-tower-manage
+  src: https://github.com/Tompage1994/ansible-tower-manage.git
+  scm: git
+  version: awx

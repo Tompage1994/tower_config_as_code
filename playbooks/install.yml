@@ -1,0 +1,31 @@
+---
+# Playbook to deploy Ansible Tower
+
+- name: Install Tower to VM
+  hosts: tower
+  become: true
+  vars:
+    tower_manage_fqdn: "{{ inventory_hostname }}"
+    tower_manage_server: "https://{{ inventory_hostname }}"
+    tower_manage_install_certs: true
+    tower_manage_license: "{{ lookup('file', '../license.json') }}"
+    tower_manage_base_packages:
+      - ansible-tower-cli
+      - gcc
+      - python3-devel
+    tower_manage_aws_rhui_repos: []
+
+  pre_tasks:
+    - name: Add tower-cli repo
+      yum_repository:
+        name: ansible-tower-cli
+        description: Tower-cli repo
+        baseurl: https://releases.ansible.com/ansible-tower/rpm/epel-8-$basearch
+        gpgcheck: false
+        enabled: true
+        sslverify: false
+
+  roles:
+    - ansible-tower-manage
+
+...
