@@ -47,6 +47,7 @@ pipeline {
           sh '''
             #!/bin/sh
             ansible-galaxy install -f -r roles/requirements.yml
+            rm -rf collections/ansible_collections
             ansible-galaxy collection install -f -r collections/requirements.yml
           '''
       }
