@@ -5,15 +5,16 @@ tower_objects:
       description: The main Demo organisations
       credential:
         - name: Machine Auth Credential
-          username: ansible
-          ssh_key_data: "{{ lookup('file', '../vars/ansible_user_ssh_key') }}"
           credential_type: Machine
+          inputs:
+            username: ansible
+            ssh_key_data: "{{ lookup('file', '../vars/ansible_user_ssh_key') }}"
       projects:
         - name: tower-config-as-code
           description: "A project for tower config as code"
           scm_url: "https://github.com/Tompage1994/tower_config_as_code.git"
           scm_type: git
-          scm_update_on_launch: yes
+          scm_update_on_launch: true
       inventory:
         - name: AWS Environment
           description: Inventory for machines in AWS environment
