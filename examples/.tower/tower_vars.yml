@@ -17,4 +17,5 @@ tower_objects:
           job_type: run
           playbook: "examples/playbooks/webserver.yaml"
           inventory: "AWS Environment"
-          credential: "Demo Credential"
+          credentials:
+            - "Demo Credential"
