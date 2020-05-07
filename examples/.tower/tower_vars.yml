@@ -18,4 +18,4 @@ tower_objects:
           playbook: "examples/playbooks/webserver.yaml"
           inventory: "AWS Environment"
           credentials:
-            - "Demo Credential"
+            - "Machine Auth Credential"

@@ -4,7 +4,7 @@ tower_objects:
     - name: Demo
       description: The main Demo organisations
       credential:
-        - name: Demo Credential
+        - name: Machine Auth Credential
           username: ansible
           ssh_key_data: "{{ lookup('file', '../vars/ansible_user_ssh_key') }}"
           credential_type: Machine
