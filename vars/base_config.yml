@@ -22,6 +22,6 @@ tower_objects:
           description: working demo sources
           source: scm
           source_project: tower-config-as-code
-          source_path: vars/inventory
+          source_path: vars/base_inventory
           inventory: AWS Environment
-
+          update_on_launch: true
