@@ -15,7 +15,7 @@ tower_objects:
         - name: Webserver Configure
           project: Example Project
           job_type: run
-          playbook: "examples/playbooks/webserver.yaml"
+          playbook: "examples/playbooks/webserver.yml"
           inventory: "AWS Environment"
           credentials:
             - "Machine Auth Credential"
