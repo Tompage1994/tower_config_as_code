@@ -6,3 +6,5 @@ venv
 collections/*
 !collections/requirements.yml
 *.retry
+prerequisites.yml
+vault-pass

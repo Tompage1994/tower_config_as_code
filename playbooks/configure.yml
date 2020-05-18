@@ -1,5 +1,6 @@
 ---
 - hosts: tower
+  user: ansible
   vars_files:
     - "../vars/base_config.yml"
   collections:

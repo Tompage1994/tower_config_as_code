@@ -3,6 +3,7 @@
 
 - name: Install Tower to VM
   hosts: tower
+  user: ansible
   become: true
   vars:
     tower_manage_fqdn: "{{ inventory_hostname }}"
@@ -14,6 +15,8 @@
       - gcc
       - python3-devel
     tower_manage_aws_rhui_repos: []
+    tower_manage_tower_release_version: "3.6.4-1"
+    tower_manage_validate_certs: false
 
   pre_tasks:
     - name: Add tower-cli repo
