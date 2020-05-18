@@ -8,7 +8,7 @@
       loop_control:
         loop_var: tower_tasks
       vars:
-        tower_manage_server: https://10.0.1.6
+        tower_manage_server: https://10.0.1.12
         tower_manage_validate_certs: false
         tower_manage_username: admin
         tower_manage_password: password

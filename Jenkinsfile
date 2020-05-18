@@ -63,7 +63,7 @@ pipeline {
         // }
         sh '''
           #!/bin/sh
-          ansible-playbook playbooks/seed.yml -e @${git_name}/.tower/tower_vars.yml -i vars/base-inventory
+          ansible-playbook playbooks/seed.yml -e @${git_name}/.tower/tower_vars.yml
         '''
       }
     }
