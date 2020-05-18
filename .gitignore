@@ -8,3 +8,5 @@ collections/*
 *.retry
 prerequisites.yml
 vault-pass
+tower.cert
+tower.key

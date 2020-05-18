@@ -22,3 +22,25 @@
         tower_manage_validate_certs: false
         tower_manage_username: admin
         tower_manage_password: password
+
+    - name: Copy certs into place
+      become: true
+      copy:
+        src: ../tower.cert
+        dest: /etc/tower/tower.cert
+      tags:
+        - tower_certs
+
+    - name: Copy cert key into place
+      become: true
+      copy:
+        src: ../tower.key
+        dest: /etc/tower/tower.key
+      tags:
+        - tower_certs
+
+    - name: Restart Ansible tower service
+      become: true
+      command: ansible-tower-service restart
+      tags:
+        - tower_certs
