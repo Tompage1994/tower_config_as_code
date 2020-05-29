@@ -3,4 +3,3 @@ extends: default
 rules:
   # 80 chars should be enough, but don't fail if a line is longer
   line-length: disable
-  new-line-at-end-of-file: disable
