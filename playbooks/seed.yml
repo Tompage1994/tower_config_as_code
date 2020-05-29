@@ -3,7 +3,7 @@
   tasks:
     - include_role:
         name: ansible-tower-manage
-        tasks_from: "{{tower_tasks}}.yml"
+        tasks_from: "{{ tower_tasks }}.yml"
       loop: "{{ tower_object_types }}"
       loop_control:
         loop_var: tower_tasks

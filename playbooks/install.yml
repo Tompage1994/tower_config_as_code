@@ -37,6 +37,8 @@
       copy:
         src: ../tower.cert
         dest: /etc/tower/tower.cert
+      notify:
+        - Restart Ansible tower service
       tags:
         - tower_certs
 
@@ -45,9 +47,12 @@
       copy:
         src: ../tower.key
         dest: /etc/tower/tower.key
+      notify:
+        - Restart Ansible tower service
       tags:
         - tower_certs
 
+  handlers:
     - name: Restart Ansible tower service
       become: true
       command: ansible-tower-service restart
