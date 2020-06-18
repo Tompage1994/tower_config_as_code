@@ -1,14 +1,15 @@
 ---
 - hosts: localhost
+  collections:
+    - redhat-cop.tower_configuration
   tasks:
     - include_role:
-        name: ansible-tower-manage
-        tasks_from: "{{ tower_tasks }}.yml"
+        name: "{{ tower_tasks }}"
       loop: "{{ tower_object_types }}"
       loop_control:
         loop_var: tower_tasks
-      vars:
-        tower_manage_server: https://tower.tompage.dev
-        tower_manage_validate_certs: false
-        tower_manage_username: admin
-        tower_manage_password: password
+  vars:
+    tower_manage_server: https://tower.tompage.dev
+    tower_manage_validate_certs: false
+    tower_manage_username: admin
+    tower_manage_password: password

@@ -4,21 +4,10 @@
   vars_files:
     - "../vars/base_config.yml"
   collections:
-    - awx.awx
-  tasks:
-    - include_role:
-        name: ansible-tower-manage
-        tasks_from: "{{ tower_tasks }}.yml"
-      loop:
-        - tower_orgs
-        - tower_credential
-        - tower_project
-        - tower_inventory
-        - tower_inventory_source
-      loop_control:
-        loop_var: tower_tasks
-      vars:
-        tower_manage_server: "https://localhost"
-        tower_manage_validate_certs: false
-        tower_manage_username: admin
-        tower_manage_password: password
+    - redhat-cop.tower_configuration
+  roles:
+    - organizations
+    - credentials
+    - projects
+    - inventories
+    - inventory_sources
