@@ -10,7 +10,7 @@
         name: '{{ inventory_hostname }}'
         instance_type: m4.xlarge
         image_id: "{{ ami_id }}"
-        wait: yes
+        wait: true
         vpc_subnet_id: "{{ subnet_id }}"
         key_name: "{{ key_pair }}"
         security_groups: "{{ security_groups }}"
@@ -37,6 +37,7 @@
   tasks:
     - name: Install Python
       raw: "sudo yum install -y python36"
+      changed_when: false
 
     - name: Create Ansible User
       user:
