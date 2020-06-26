@@ -1,21 +1,21 @@
 ---
 tower_object_types:
-  - tower_project
-  - tower_job
-tower_objects:
-  organisations:
-    - name: Demo
-      projects:
-        - name: Example Project
-          description: "An example project for demo purposes"
-          scm_url: "https://github.com/Tompage1994/tower_config_as_code.git"
-          scm_type: git
-          scm_update_on_launch: yes
-      job_templates:
-        - name: Webserver Configure
-          project: Example Project
-          job_type: run
-          playbook: "examples/playbooks/webserver.yml"
-          inventory: "AWS Environment"
-          credentials:
-            - "Machine Auth Credential"
+  - projects
+  - job_templates
+
+tower_projects:
+  - name: Example Project
+    description: "An example project for demo purposes"
+    organization: Demo
+    scm_url: "https://github.com/Tompage1994/tower_config_as_code.git"
+    scm_type: git
+    scm_update_on_launch: yes
+tower_templates:
+  - name: Webserver Configure
+    organization: Demo
+    project: Example Project
+    job_type: run
+    playbook: "examples/playbooks/webserver.yml"
+    inventory: "AWS Environment"
+    credentials:
+      - "Machine Auth Credential"

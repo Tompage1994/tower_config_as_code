@@ -1,15 +1,16 @@
 ---
 - hosts: localhost
   collections:
-    - redhat-cop.tower_configuration
+    - tompage1994.tower_configuration
+  vars:
+    tower_hostname: https://tower.tompage.dev
+    validate_certs: false
+    tower_username: admin
+    tower_password: password
   tasks:
-    - include_role:
+    - name: "Include {{ tower_tasks }} role"
+      include_role:
         name: "{{ tower_tasks }}"
       loop: "{{ tower_object_types }}"
       loop_control:
         loop_var: tower_tasks
-  vars:
-    tower_manage_server: https://tower.tompage.dev
-    tower_manage_validate_certs: false
-    tower_manage_username: admin
-    tower_manage_password: password

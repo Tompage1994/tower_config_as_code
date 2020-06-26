@@ -1,28 +1,30 @@
 ---
-tower_objects:
-  organisations:
-    - name: Demo
-      description: The main Demo organisations
-      credential:
-        - name: Machine Auth Credential
-          credential_type: Machine
-          inputs:
-            username: ansible
-            ssh_key_data: "{{ lookup('file', '../vars/ansible_user_ssh_key') }}"
-      projects:
-        - name: tower-config-as-code
-          description: "A project for tower config as code"
-          scm_url: "https://github.com/Tompage1994/tower_config_as_code.git"
-          scm_type: git
-          scm_update_on_launch: true
-      inventory:
-        - name: AWS Environment
-          description: Inventory for machines in AWS environment
-      inventory_source:
-        - name: working demo sources
-          description: working demo sources
-          source: scm
-          source_project: tower-config-as-code
-          source_path: vars/base_inventory
-          inventory: AWS Environment
-          update_on_launch: true
+tower_organizations:
+  - name: Demo
+    description: The main Demo organisations
+tower_credentials:
+  - name: Machine Auth Credential
+    organization: Demo
+    credential_type: Machine
+    inputs:
+      username: ansible
+      ssh_key_data: "{{ lookup('file', '../vars/ansible_user_ssh_key') }}"
+tower_projects:
+  - name: tower-config-as-code
+    description: "A project for tower config as code"
+    organization: Demo
+    scm_url: "https://github.com/Tompage1994/tower_config_as_code.git"
+    scm_type: git
+    scm_update_on_launch: true
+tower_inventories:
+  - name: AWS Environment
+    description: Inventory for machines in AWS environment
+    organization: Demo
+tower_inventory_sources:
+  - name: working demo sources
+    description: working demo sources
+    source: scm
+    source_project: tower-config-as-code
+    source_path: vars/base_inventory
+    inventory: AWS Environment
+    update_on_launch: true

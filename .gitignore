@@ -10,3 +10,5 @@ prerequisites.yml
 vault-pass
 tower.cert
 tower.key
+access_key
+secret_key

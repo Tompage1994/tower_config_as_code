@@ -1,0 +1,55 @@
+---
+- name: Generate EC2 Instance
+  hosts: aws
+  tasks:
+    - name: Create instance
+      ec2_instance:
+        aws_access_key: "{{ lookup('file', '../access_key') }}"
+        aws_secret_key: "{{ lookup('file', '../secret_key') }}"
+        region: eu-west-2
+        name: '{{ inventory_hostname }}'
+        instance_type: m4.xlarge
+        image_id: "{{ ami_id }}"
+        wait: yes
+        vpc_subnet_id: "{{ subnet_id }}"
+        key_name: "{{ key_pair }}"
+        security_groups: "{{ security_groups }}"
+        volumes:
+          - device_name: /dev/sda1
+            ebs:
+              volume_size: 20
+              delete_on_termination: true
+      register: ec2
+
+    - name: Associate Elastic IP
+      ec2_eip:
+        aws_access_key: "{{ lookup('file', '../access_key') }}"
+        aws_secret_key: "{{ lookup('file', '../secret_key') }}"
+        region: eu-west-2
+        ip: "{{ elastic_ip }}"
+        device_id: "{{ item.instance_id }}"
+      loop: "{{ ec2.instances }}"
+
+- hosts: tower
+  user: ec2-user
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install Python
+      raw: "sudo yum install -y python36"
+
+    - name: Create Ansible User
+      user:
+        name: ansible
+
+    - name: Add ansible to sudoers
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+
+    - name: Add authorized key
+      authorized_key:
+        user: ansible
+        key: "{{ lookup('file', '../id.rsa.pub') }}"
+        state: present

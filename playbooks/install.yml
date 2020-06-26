@@ -6,8 +6,8 @@
   user: ansible
   become: true
   vars:
-    tower_manage_fqdn: "{{ inventory_hostname }}"
-    tower_manage_server: "https://{{ inventory_hostname }}"
+    tower_manage_fqdn: "{{ actual_hostname }}"
+    tower_manage_server: "https://{{ actual_hostname }}"
     tower_manage_install_certs: true
     tower_manage_license: "{{ lookup('file', '../license.json') }}"
     tower_manage_base_packages:
@@ -15,7 +15,7 @@
       - gcc
       - python3-devel
     tower_manage_aws_rhui_repos: []
-    tower_manage_tower_release_version: "3.6.4-1"
+    tower_manage_tower_release_version: "3.7.1-1"
     tower_manage_validate_certs: false
 
   pre_tasks:
