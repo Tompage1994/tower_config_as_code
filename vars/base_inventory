@@ -1,4 +1,4 @@
 [webservers]
-10.0.1.12
+www.tompage.dev ansible_host=10.0.1.12
 [tower]
 localhost
