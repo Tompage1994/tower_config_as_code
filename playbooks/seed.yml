@@ -6,7 +6,7 @@
     tower_hostname: https://tower.tompage.dev
     validate_certs: false
     tower_username: admin
-    tower_password: password
+    tower_password: r3dh4t!
   tasks:
     - name: "Include {{ tower_tasks }} role"
       include_role:
