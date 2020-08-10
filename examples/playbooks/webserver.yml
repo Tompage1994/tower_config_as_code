@@ -15,5 +15,5 @@
 
     - name: Put content on webserver
       copy:
-        content: "<h1>Ansible Automates 2020</h1>"
+        content: "<h1>Hello world</h1>"
         dest: /usr/share/nginx/html/index.html
